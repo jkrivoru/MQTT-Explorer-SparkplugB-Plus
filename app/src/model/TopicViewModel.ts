@@ -11,9 +11,9 @@ function findDecoder<T extends Destroyable>(node: q.TreeNode<T>): TopicDecoder |
 
   return decoder
     ? {
-        decoder,
-        format: undefined,
-      }
+      decoder,
+      format: undefined,
+    }
     : undefined
 }
 
@@ -35,6 +35,7 @@ export class TopicViewModel implements Destroyable {
   get decoder(): TopicDecoder | undefined {
     if (!this._decoder) {
       this._decoder = this.owner && findDecoder(this.owner)
+      //queueMicrotask(() => this.onDecoderChange.dispatch(this._decoder))
     }
 
     return this._decoder
@@ -42,7 +43,7 @@ export class TopicViewModel implements Destroyable {
 
   set decoder(override: TopicDecoder | undefined) {
     this._decoder = override
-
+    console.log('set decoder', override, this.owner?.path())
     this.onDecoderChange.dispatch(override)
   }
 

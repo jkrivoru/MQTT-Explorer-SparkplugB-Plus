@@ -57,10 +57,13 @@ function Sidebar(props: Props) {
       <div>
         <TopicPanel node={node} />
         <ValuePanel lastUpdate={node ? node.lastUpdate : 0} />
-        <Panel>
-          <span>Publish</span>
-          <Publish connectionId={props.connectionId} />
-        </Panel>
+
+        {!(node?.isMetric) && (
+          <Panel>
+            <span>Publish</span>
+            <Publish connectionId={props.connectionId} />
+          </Panel>
+        )}
         <Panel detailsHidden={!node}>
           <span>Stats</span>
           <ExpansionPanelDetails className={classes.details}>

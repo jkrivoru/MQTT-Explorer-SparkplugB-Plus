@@ -1,6 +1,6 @@
 import { Destroyable } from './Destroyable'
 import { Edge, Tree, TreeNode } from './'
-import { MqttMessage } from '../../../events'
+import { MqttMessage, MqttMessageMetric } from '../../../events'
 import { Base64Message } from './Base64Message'
 
 export abstract class TreeNodeFactory {
@@ -36,6 +36,7 @@ export abstract class TreeNodeFactory {
       received: receiveDate,
       messageNumber: this.messageCounter,
     })
+    node.isMetric = (mqttMessage as MqttMessageMetric).isMetric === true
     this.messageCounter += 1
 
     this.insertNodeAtPosition<ViewModel>(edges, node)

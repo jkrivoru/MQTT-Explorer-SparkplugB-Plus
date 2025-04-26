@@ -39,6 +39,10 @@ export interface MqttMessage {
   messageId: number | undefined
 }
 
+export interface MqttMessageMetric extends MqttMessage {
+  isMetric: boolean
+}
+
 export function makePublishEvent(connectionId: string): Event<MqttMessage> {
   return {
     topic: `conn/publish/${connectionId}`,

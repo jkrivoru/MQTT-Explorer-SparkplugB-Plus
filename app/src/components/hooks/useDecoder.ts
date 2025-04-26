@@ -16,10 +16,10 @@ export type DecoderFunction = (message: q.Message) => DecoderEnvelope | undefine
  */
 export function useDecoder(treeNode: q.TreeNode<TopicViewModel> | undefined): DecoderFunction {
   const viewModel = useViewModel(treeNode)
-  const [decoder, setDecoder] = useState(viewModel?.decoder)
+  //const [decoder, setDecoder] = useState(viewModel?.decoder)
 
-  useSubscription(viewModel?.onDecoderChange, setDecoder)
-
+  //useSubscription(viewModel?.onDecoderChange, setDecoder)
+  const decoder = viewModel?.decoder
   return useCallback(
     message => {
       return decoder && message.payload

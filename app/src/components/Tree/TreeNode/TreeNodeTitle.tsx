@@ -19,9 +19,15 @@ export const TreeNodeTitle = (props: TreeNodeProps) => {
 
   function renderSourceEdge() {
     const name = props.name || (props.treeNode.sourceEdge && props.treeNode.sourceEdge.name)
+    const classNames = [
+      props.classes.sourceEdge,
+      props.treeNode.isMetric ? props.classes.sourceEdgeMetric : null
+    ]
+      .filter(c => !!c)
+      .join(' ')
 
     return (
-      <span key="edge" className={props.classes.sourceEdge} data-test-topic={name}>
+      <span key="edge" className={classNames} data-test-topic={name}>
         {name}
       </span>
     )
@@ -66,9 +72,8 @@ export const TreeNodeTitle = (props: TreeNodeProps) => {
     const messages = props.treeNode.leafMessageCount()
     const topicCount = props.treeNode.childTopicCount()
     return (
-      <span key="metadata" className={props.classes.collapsedSubnodes}>{` (${topicCount} ${
-        topicCount === 1 ? 'topic' : 'topics'
-      }, ${messages} ${messages === 1 ? 'message' : 'messages'})`}</span>
+      <span key="metadata" className={props.classes.collapsedSubnodes}>{` (${topicCount} ${topicCount === 1 ? 'topic' : 'topics'
+        }, ${messages} ${messages === 1 ? 'message' : 'messages'})`}</span>
     )
   }
 
@@ -92,6 +97,9 @@ const styles = (theme: Theme) => ({
   sourceEdge: {
     fontWeight: 'bold' as 'bold',
     overflow: 'hidden' as 'hidden',
+  },
+  sourceEdgeMetric: {
+    color: 'darkgreen',
   },
   expander: {
     color: theme.palette.type === 'light' ? '#222' : '#eee',

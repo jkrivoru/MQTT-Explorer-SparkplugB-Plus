@@ -3,6 +3,7 @@ import { Destroyable } from './Destroyable'
 import { EventDispatcher, makeConnectionMessageEvent, MqttMessage, EventBusInterface } from '../../../events'
 import { TreeNode } from './'
 import { TreeNodeFactory } from './TreeNodeFactory'
+import { SparkplugHandler } from './SparkplugHandler'
 
 export class Tree<ViewModel extends Destroyable> extends TreeNode<ViewModel> {
   public connectionId?: string
@@ -17,6 +18,7 @@ export class Tree<ViewModel extends Destroyable> extends TreeNode<ViewModel> {
   public updateInterval: any
   private paused: boolean = false
   private applyChangesHasCompleted = true
+  private sparkplugHandler = new SparkplugHandler()
 
   constructor() {
     super(undefined, undefined)
@@ -24,6 +26,14 @@ export class Tree<ViewModel extends Destroyable> extends TreeNode<ViewModel> {
 
   private handleNewData = (msg: MqttMessage) => {
     this.unmergedMessages.push(msg)
+
+    if (this.sparkplugHandler.isSparkplugTopic(msg.topic) && msg.payload) {
+      const metrics = this.sparkplugHandler.getMetrics(msg)
+      metrics.forEach(metric => {
+        this.unmergedMessages.push(metric)
+      })
+      console.log('Metrics:', metrics)
+    }
   }
 
   private runUpdates() {
@@ -31,7 +41,7 @@ export class Tree<ViewModel extends Destroyable> extends TreeNode<ViewModel> {
       if (!this.paused && this.applyChangesHasCompleted) {
         this.applyChangesHasCompleted = false
         if ((window as any).requestIdleCallback) {
-          ;(window as any).requestIdleCallback(() => this.applyUnmergedChanges(), { timeout: 500 })
+          ; (window as any).requestIdleCallback(() => this.applyUnmergedChanges(), { timeout: 500 })
         } else {
           this.applyUnmergedChanges()
         }

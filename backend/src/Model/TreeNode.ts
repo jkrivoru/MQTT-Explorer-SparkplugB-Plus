@@ -19,6 +19,7 @@ export class TreeNode<ViewModel extends Destroyable> {
   public onMessage = new EventDispatcher<Message>()
   public onDestroy = new EventDispatcher<TreeNode<ViewModel>>()
   public isTree = false
+  public isMetric = false
   public type: TopicDataType = 'json'
 
   private cachedPath?: string
