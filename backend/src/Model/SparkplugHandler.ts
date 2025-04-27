@@ -10,7 +10,7 @@ export interface SparkplugMetric {
 
 export class SparkplugHandler {
     private spark = get('spBv1.0')
-    private topicRe = /^spBv1\.0\/[^/]+\/[ND](?:DATA|CMD|DEATH|BIRTH)\/[^/]+(?:\/[^/]+)?$/u
+    private topicRe = /^spBv1\.0\/(?:certificates\/)?[^\/]+\/[ND](?:DATA|CMD|DEATH|BIRTH)\/[^\/]+(?:\/[^\/]+)?$/u
 
     public isSparkplugTopic(topic: string): boolean {
         return this.topicRe.test(topic)

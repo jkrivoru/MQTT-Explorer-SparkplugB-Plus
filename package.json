@@ -36,10 +36,10 @@
   },
   "build": {
     "appId": "jkrivoru.mqtt-explorer.sparkplugb",
-    "productName": "MQTT Explorer",
+    "productName": "MQTT Explorer (SparkplugB Edition)",
     "nodeGypRebuild": false,
     "mac": {
-      "appId": "de.t7n.apps.mqtt-explorer",
+      "appId": "com.jkrivoru.mqtt-explorer.sparkplugb",
       "category": "public.app-category.developer-tools",
       "hardenedRuntime": true,
       "publish": [
@@ -49,7 +49,7 @@
     },
     "linux": {
       "category": "Development",
-      "maintainer": "Juri Krivoruchko (fork from Thomas Nordquist original work)"
+      "maintainer": "Juri Krivoruchko (Built from MQTT Explorer (c) Thomas Nordquist under CC BY-ND 4.0 license)"
     },
     "snap": {
       "environment": {
@@ -71,7 +71,7 @@
     },
     "afterPack": "./dist/scripts/afterPack.js"
   },
-  "author": "Juri Krivoruchko (fork from Thomas Nordquist original work)",
+  "author": "Juri Krivoruchko (Built from MQTT Explorer (c) Thomas Nordquist under CC BY-ND 4.0 license)",
   "email": "jkrivoru@gmail.com",
   "homepage": "https://github.com",
   "license": "CC-BY-ND-4.0",

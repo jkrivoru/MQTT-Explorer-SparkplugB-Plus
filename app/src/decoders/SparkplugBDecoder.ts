@@ -7,7 +7,7 @@ var sparkplug = get('spBv1.0')
 export const SparkplugDecoder: MessageDecoder = {
   formats: ['Sparkplug'],
   canDecodeTopic(topic: string) {
-    return !!topic.match(/^spBv1\.0\/[^/]+\/[ND](DATA|CMD|DEATH|BIRTH)\/[^/]+(\/[^/]+)?$/u)
+    return !!topic.match(/^spBv1\.0\/(?:certificates\/)?[^\/]+\/[ND](?:DATA|CMD|DEATH|BIRTH)\/[^\/]+(?:\/[^\/]+)?$/u)
   },
   decode(input) {
     try {
