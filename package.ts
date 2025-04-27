@@ -81,7 +81,7 @@ async function executeBuild() {
       await buildWithOptions(linuxDeb, { platform: 'linux', package: 'deb' })
       break
     case 'mac':
-      await buildWithOptions(mac, { platform: 'mac', package: 'dmg' })
+      //await buildWithOptions(mac, { platform: 'mac', package: 'dmg' })
       // await buildWithOptions(mac, { platform: 'mac', package: 'mas' })
       // await buildWithOptions(mac, { platform: 'mac', package: 'zip' })
       break

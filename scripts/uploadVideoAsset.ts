@@ -8,7 +8,7 @@ const githubToken = process.env.GH_TOKEN
 
 async function tagUrl(tag: string): Promise<string | undefined> {
   const response = await axios.get(
-    `https://api.github.com/repos/thomasnordquist/mqtt-explorer/releases?access_token=${githubToken}`
+    `https://github.com/jkrivoru/MQTT-Explorer-SparkplugB-Plus/releases?access_token=${githubToken}`
   )
   const tagRelease = response.data.find((release: any) => release.tag_name === tag)
 
@@ -20,7 +20,7 @@ async function createDraft(tag: string) {
 
   const response = await axios({
     method: 'post',
-    url: `https://api.github.com/repos/thomasnordquist/mqtt-explorer/releases?access_token=${githubToken}`,
+    url: `https://github.com/jkrivoru/MQTT-Explorer-SparkplugB-Plus/releases?access_token=${githubToken}`,
     data: {
       tag_name: tag,
       name: tag.slice(1),

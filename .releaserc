@@ -6,7 +6,7 @@
       "prerelease": true
     }
   ],
-  repositoryUrl: "git@github.com:thomasnordquist/MQTT-Explorer.git",
+  "repositoryUrl": "git@github.com:jkrivoru/MQTT-Explorer-SparkplugB-Plus.git",
   "plugins": [
     "@semantic-release/commit-analyzer",
     "semantic-release-export-data",

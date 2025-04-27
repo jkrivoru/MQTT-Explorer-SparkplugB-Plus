@@ -15,6 +15,7 @@ export abstract class TreeNodeFactory {
       edge = new Edge<ViewModel>(edgeName)
       currentNode.addEdge(edge)
       currentNode = new TreeNode(edge)
+      currentNode.isMetric = node.isMetric
       edge.target = currentNode
     }
     node.sourceEdge = edge
