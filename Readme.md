@@ -1,6 +1,6 @@
 # MQTT Explorer – SparkplugB Edition
 
-![image](https://github.com/user-attachments/assets/da9e2eca-bf64-43cc-9a2f-66111af58703)
+![image](https://github.com/user-attachments/assets/da0870e5-ebb4-4148-9cf7-64c1c5c7e0c1)
 
 🚀 This project is a **fork** of [MQTT Explorer](https://github.com/thomasnordquist/MQTT-Explorer), extended to add **SparkplugB protocol support**.
 
